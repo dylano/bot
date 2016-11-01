@@ -8,8 +8,10 @@ import requests
 import json
 
 """
-A simple bot that provides data about Warriors schedule & resutls.
+A simple bot that provides data about selected NBA schedule & resutls.
 - /dubs : reply with Warriors info
+- /lakers : reply with Lakers info
+- /spurs : reply with Spurs info
 
 $ python nbabot.py
 
