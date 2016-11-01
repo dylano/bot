@@ -11,7 +11,7 @@ import json
 A simple bot that provides data about Warriors schedule & resutls.
 - /dubs : reply with Warriors info
 
-$ python dylbot.py
+$ python nbabot.py
 
 Ctrl-C to kill.
 
