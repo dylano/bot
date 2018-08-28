@@ -29,6 +29,7 @@ bot.onText(/\/sch.*/, msg => {
   bot.sendMessage(msg.chat.id, schedule(), { parse_mode: 'HTML' });
 });
 
-bot.onText(/\/head|news.*/, msg => {
-  bot.sendMessage(msg.chat.id, headlines(), { parse_mode: 'HTML' });
+bot.onText(/\/head|news.*/, async msg => {
+  const hStr = await headlines();
+  bot.sendMessage(msg.chat.id, hStr, { parse_mode: 'HTML' });
 });

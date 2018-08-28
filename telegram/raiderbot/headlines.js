@@ -1,10 +1,25 @@
-const reddit = require('snoowrap');
+const axios = require('axios');
+const HEADLINE_URL = 'https://www.reddit.com/r/oaklandraiders.json';
+const NUM_HEADLINES = 5;
 
-const getHeadlines = () => {
-  return `<b>Headlines</b> from <a href="https://www.reddit.com/r/oaklandraiders/">r/oaklandraiders</a>:
-    * Georgio Tavecchio signs with Atlanta. (<a href="https://www.reddit.com/r/oaklandraiders/comments/9apyuv/georgio_tavecchio_signs_with_atlanta/">Read</a>)
-    * Donald Penn also said that when Jon Gruden dials down practice intensity, Penn tells the DE he's facing to go harder since he wants to make up for the right tackle reps he missed at start of camp.(<a href="https://www.reddit.com/r/oaklandraiders/comments/9at36m/donald_penn_also_said_that_when_jon_gruden_dials/">Read</a>)
-    `;
+const getHeadlines = async () => {
+  const allHeadlines = (await axios.get(HEADLINE_URL)).data.data.children;
+
+  const topTitles = allHeadlines
+    .filter((x, i) => i <= NUM_HEADLINES - 1)
+    .map(
+      headline =>
+        `* ${headline.data.title} (<a href="https://www.reddit.com/${
+          headline.data.permalink
+        }">Read</a>)\n`
+    );
+
+  let result = `<b>Headlines</b> from <a href="https://www.reddit.com/r/oaklandraiders/">r/oaklandraiders</a>:\n`;
+  topTitles.forEach(element => {
+    result = result.concat(element);
+  });
+
+  return result;
 };
 
 module.exports = getHeadlines;
