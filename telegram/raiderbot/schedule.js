@@ -1,5 +1,6 @@
 const getSchedule = () => {
   return `
+  <em>2018 Schedule</em>
     <b>9/10: Rams</b>
     9/16: @ Broncos
     9/23: @ Dolphins
